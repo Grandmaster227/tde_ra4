@@ -17,7 +17,7 @@ public class Main {
             long fim = System.nanoTime();
 
             System.out.println("Bubble sort usado em " + file + ": " + (fim - comeco) / 1_000_000.0 + " ms");
-            
+
 
             dataCopy = new ArrayList<>(data);
             comeco = System.nanoTime();
@@ -33,7 +33,7 @@ public class Main {
             System.out.println("Quick sort usado em " + file + ": " + (fim - comeco) / 1_000_000.0 + " ms");
 
 
-            System.out.println("--------------THE END-------------------");
+            System.out.println("\n--------------THE END-------------------\n");
         }
     }
 }
