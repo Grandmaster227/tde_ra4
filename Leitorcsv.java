@@ -10,16 +10,16 @@ public class Leitorcsv {
         List<Integer> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            boolean firstLine = true; // Adiciona uma variável para verificar a primeira linha
+            boolean firstLine = true; 
             while ((line = br.readLine()) != null) {
                 if (firstLine) {
-                    firstLine = false; // Pula a primeira linha
+                    firstLine = false; 
                     continue;
                 }
                 try {
-                    data.add(Integer.parseInt(line.trim())); // Tenta converter cada linha para Integer
+                    data.add(Integer.parseInt(line.trim())); 
                 } catch (NumberFormatException e) {
-                    System.out.println("Erro ao converter para Integer: " + line); // Mensagem de erro
+                    System.out.println("Erro ao converter para Integer: " + line); 
                 }
             }
         } catch (IOException e) {
