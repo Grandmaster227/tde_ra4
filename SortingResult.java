@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 public class SortingResult {
     private String algorithm;
     private String fileName;
-    private double executionTime; // Tempo em milissegundos
+    private double executionTime;
 
     public SortingResult(String algorithm, String fileName) {
         this.algorithm = algorithm;

@@ -9,14 +9,12 @@ public class Main {
                 "decrescente_100.csv", "decrescente_1000.csv", "decrescente_10000.csv"
         };
 
-        // Exibe o cabeçalho
         System.out.printf("%-20s %-20s %-10s\n", "Algoritmo", "Arquivo", "Tempo (ms)");
         System.out.println("-----------------------------------------------------------");
 
         for (String file : arquivos) {
             List<Integer> data = Leitorcsv.readCSV(file);
 
-            // Bubble Sort
             List<Integer> dataCopy = new ArrayList<>(data);
             long start = System.nanoTime();
             Sorting.bubbleSort(dataCopy);
@@ -24,7 +22,6 @@ public class Main {
             double bubbleTime = (end - start) / 1_000_000.0;
             System.out.printf("%-20s %-20s %-10.4f\n", "Bubble Sort", file, bubbleTime);
 
-            // Insertion Sort
             dataCopy = new ArrayList<>(data);
             start = System.nanoTime();
             Sorting.insertSort(dataCopy);
@@ -32,7 +29,6 @@ public class Main {
             double insertionTime = (end - start) / 1_000_000.0;
             System.out.printf("%-20s %-20s %-10.4f\n", "Insertion Sort", file, insertionTime);
 
-            // Quick Sort
             dataCopy = new ArrayList<>(data);
             start = System.nanoTime();
             Sorting.quickSort(dataCopy, 0, dataCopy.size() - 1);
@@ -40,7 +36,6 @@ public class Main {
             double quickTime = (end - start) / 1_000_000.0;
             System.out.printf("%-20s %-20s %-10.4f\n", "Quick Sort", file, quickTime);
 
-            // Linha de separação entre cada arquivo
             System.out.println("-----------------------------------------------------------");
         }
     }
