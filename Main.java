@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,26 +16,17 @@ public class Main {
         for (String file : arquivos) {
             List<Integer> data = Leitorcsv.readCSV(file);
 
-            List<Integer> dataCopy = new ArrayList<>(data);
-            long start = System.nanoTime();
-            Sorting.bubbleSort(dataCopy);
-            long end = System.nanoTime();
-            double bubbleTime = (end - start) / 1_000_000.0;
-            System.out.printf("%-20s %-20s %-10.4f\n", "Bubble Sort", file, bubbleTime);
+            SortingResult bubbleSortResult = new SortingResult("Bubble Sort", file);
+            bubbleSortResult.measure(data, Sorting::bubbleSort);
+            System.out.printf("%-20s %-20s %-10.4f\n", bubbleSortResult.getAlgorithm(), bubbleSortResult.getFileName(), bubbleSortResult.getExecutionTime());
 
-            dataCopy = new ArrayList<>(data);
-            start = System.nanoTime();
-            Sorting.insertSort(dataCopy);
-            end = System.nanoTime();
-            double insertionTime = (end - start) / 1_000_000.0;
-            System.out.printf("%-20s %-20s %-10.4f\n", "Insertion Sort", file, insertionTime);
+            SortingResult insertionSortResult = new SortingResult("Insertion Sort", file);
+            insertionSortResult.measure(data, Sorting::insertSort);
+            System.out.printf("%-20s %-20s %-10.4f\n", insertionSortResult.getAlgorithm(), insertionSortResult.getFileName(), insertionSortResult.getExecutionTime());
 
-            dataCopy = new ArrayList<>(data);
-            start = System.nanoTime();
-            Sorting.quickSort(dataCopy, 0, dataCopy.size() - 1);
-            end = System.nanoTime();
-            double quickTime = (end - start) / 1_000_000.0;
-            System.out.printf("%-20s %-20s %-10.4f\n", "Quick Sort", file, quickTime);
+            SortingResult quickSortResult = new SortingResult("Quick Sort", file);
+            quickSortResult.measure(data, dataList -> Sorting.quickSort(dataList, 0, dataList.size() - 1));
+            System.out.printf("%-20s %-20s %-10.4f\n", quickSortResult.getAlgorithm(), quickSortResult.getFileName(), quickSortResult.getExecutionTime());
 
             System.out.println("-----------------------------------------------------------");
         }
